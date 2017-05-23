@@ -1,0 +1,9 @@
+Set nth bit
+
+x | (1<<n)
+Unset nth bit
+
+x & ~(1<<n)
+Toggle nth bit
+
+x ^ (1<<n)
