@@ -1,9 +1,18 @@
 Set nth bit
-
 x | (1<<n)
+
 Unset nth bit
-
 x & ~(1<<n)
-Toggle nth bit
 
+Toggle nth bit
 x ^ (1<<n)
+
+1) Compute the sign of an integer
+  //The far left bit is 1 when the value is negative and 0 otherwise;
+  // CHAR_BIT is the number of bits per byte (normally 8).
+  sign = (v >> (sizeof(int) * CHAR_BIT - 1));
+  
+ 2) Detect if two integers have opposite signs
+  bool f = ((x ^ y) < 0);
+  
+ 3) 
