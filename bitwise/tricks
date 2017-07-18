@@ -1,3 +1,6 @@
+i. x & (x-1) zeros the lowest set bit
+ii. x & ~(x-1) extracts the lowest set bit
+
 Set nth bit
 x | (1<<n)
 
@@ -16,3 +19,6 @@ x ^ (1<<n)
   bool f = ((x ^ y) < 0);
   
  3) 
+
+
+
