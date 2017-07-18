@@ -25,3 +25,23 @@ Notice that, if a duplicate number has bit i as 0, then, two copies of it will b
 by XoRing all numbers in the first group, we can get the first number.
 by XoRing all numbers in the second group, we can get the second number.Given an array of numbers nums, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once.
 
+
+class Solution(object):
+    def singleNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        res_xor = nums[0]
+        for i in nums[1:]:
+            res_xor ^= i
+        bit_set = res_xor & ~(res_xor-1)
+        num1 = 0
+        num2 = 0
+        for i in nums:
+            if (i & bit_set) > 0:
+                num1 ^= i
+            else:
+                num2 ^=i
+        return [num1, num2]
+        
