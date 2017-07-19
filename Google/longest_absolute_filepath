@@ -31,3 +31,24 @@ The name of a directory or sub-directory will not contain a ..
 Time complexity required: O(n) where n is the size of the input string.
 
 Notice that a/aa/aaa/file1.txt is not the longest file path, if there is another path aaaaaaaaaaaaaaaaaaaaa/sth.png.
+
+class Solution(object):
+    def lengthLongestPath(self, input):
+        """
+        :type input: str
+        :rtype: int
+        Algorithm:
+        split the input by "\n"
+        iterate through the array and if it starts with "\t", it is not of depth 1
+        """
+        max_sofar = 0
+        d = {0: 0}
+        for line in input.split("\n"):
+            folder = line.strip("\t")
+            depth = len(line) - len(folder)
+            
+            if "." in line:
+                max_sofar = max(max_sofar, d[depth] + len(folder))
+            else:
+                d[depth + 1] = d[depth] + len(folder) + 1
+        return max_sofar
