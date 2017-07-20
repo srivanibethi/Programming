@@ -1,0 +1,53 @@
+https://leetcode.com/problems/zigzag-iterator/#/description
+
+class ZigzagIterator(object):
+
+    def __init__(self, v1, v2):
+        """
+        Initialize your data structure here.
+        :type v1: List[int]
+        :type v2: List[int]
+        """
+        self.v1 = v1
+        self.v2 = v2
+        self.count = 0
+        self.v1_index = 0
+        self.v2_index = 0
+        
+        
+
+    def next(self):
+        """
+        :rtype: int
+        """
+        if self.count % 2 == 0:
+            if self.v1_index < len(self.v1):
+                num = self.v1[self.v1_index]
+                self.v1_index += 1
+            elif self.v2_index < len(self.v2):
+                num = self.v2[self.v2_index]
+                self.v2_index +=1
+            else:
+                num = None
+        else:
+            if self.v2_index < len(self.v2):
+                num = self.v2[self.v2_index]
+                self.v2_index += 1
+            elif self.v1_index < len(self.v1):
+                num = self.v1[self.v1_index]
+                self.v1_index +=1
+            else:
+                num = None
+        self.count +=1
+        return num
+        
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return self.v1_index < len(self.v1) or self.v2_index < len(self.v2)
+        
+
+# Your ZigzagIterator object will be instantiated and called as such:
+# i, v = ZigzagIterator(v1, v2), []
+# while i.hasNext(): v.append(i.next())
