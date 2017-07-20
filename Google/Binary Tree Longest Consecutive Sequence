@@ -1,0 +1,29 @@
+https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/#/discuss
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def longestConsecutive(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return 0
+        return max(self.helper(root.left, 1, root.val), self.helper(root.right, 1, root.val))
+              
+    def helper(self, root, count, val):
+        if not root:
+            return count
+        if root.val - val == 1:
+            count +=1
+        else:
+            count = 1
+        left_max = self.helper(root.left, count, root.val)
+        right_max = self.helper(root.right, count, root.val)
+        return max(left_max, right_max, count)
