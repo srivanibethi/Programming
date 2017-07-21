@@ -1,0 +1,58 @@
+https://leetcode.com/problems/missing-ranges/#/discuss
+ def findMissingRanges(self, A, lower, upper):
+        result = []
+        A.append(upper+1)
+        pre = lower - 1
+        for i in A:
+           if (i == pre + 2):
+               result.append(str(i-1))
+           elif (i > pre + 2):
+               result.append(str(pre + 1) + "->" + str(i -1))
+           pre = i
+        return result
+        
+   If not inclusive
+   
+   class Solution(object):
+    def findMissingRanges(self, nums, lower, upper):
+        """
+        :type nums: List[int]
+        :type lower: int
+        :type upper: int
+        :rtype: List[str]
+        """
+        res = []
+        nums.append(upper+1)
+        if lower > nums[0]:
+            lower_index = self.helper(nums, lower)
+        else:
+            lower_index = 0
+        if upper > nums[-1]:
+            higher_index = self.helper(nums, upper)
+        else:
+            higher_index = len(nums)
+        last_number = lower-1
+        for n in nums[lower_index:higher_index+1]:
+            if (n == last_number + 2):
+               res.append(str(n-1))
+            elif (n > last_number + 2):
+               res.append(str(last_number + 1) + "->" + str(n -1))
+            last_number = n
+        return res
+            
+    def helper(self, alist, item):
+	    first = 0
+	    last = len(alist)-1
+	    found = False
+	
+	    while first<=last and not found:
+	        midpoint = (first + last)//2
+	        if alist[midpoint] == item:
+	            found = True
+	        else:
+	            if item < alist[midpoint]:
+	                last = midpoint-1
+	            else:
+	                first = midpoint+1
+	
+	    return midpoint
