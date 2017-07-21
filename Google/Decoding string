@@ -1,0 +1,33 @@
+https://leetcode.com/problems/decode-string/
+
+Examples:
+
+s = "3[a]2[bc]", return "aaabcbc".
+s = "3[a2[c]]", return "accaccacc".
+s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
+
+class Solution(object):
+    def decodeString(self, string_org):
+        """
+        :type s: str
+        :rtype: str
+        
+        Gotchas: If the number is multiple digits
+        """
+        s = []
+        num = ""
+        s.append(["", 1])
+        for i in string_org:
+            if i.isdigit():
+                #Gotchas: If the number is multiple digits, hence the append
+                num += i
+            elif i == "[":
+                s.append(["", num])
+                num = ""
+            elif i == "]":
+                st, k = s.pop()
+                s[-1][0] += st*int(k)
+            else:
+                s[-1][0] +=i
+        return s[0][0]
+                
