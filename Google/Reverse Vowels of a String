@@ -1,0 +1,11 @@
+https://leetcode.com/problems/reverse-vowels-of-a-string
+
+import re
+class Solution(object):
+    def reverseVowels(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        vowels = re.findall("[aeiouAEIOU]", s)
+        return re.sub("[aeiouAEIOU]", lambda x:vowels.pop(), s)
