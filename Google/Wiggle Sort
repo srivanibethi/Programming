@@ -1,5 +1,12 @@
 
 LOgic: if first < second we are good else swap those two and if second > third we are good, else swap them
+
+class Solution(object):
+    def wiggleSort(self, nums):
+        for i in xrange(1, len(nums)):
+            if (i % 2) ^ (nums[i] > nums[i - 1]):
+                nums[i], nums[i - 1] = nums[i - 1], nums[i]
+                
 class Solution(object):
     def wiggleSort(self, nums):
         """
