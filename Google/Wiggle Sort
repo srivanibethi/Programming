@@ -1,0 +1,25 @@
+
+LOgic: if first < second we are good else swap those two and if second > third we are good, else swap them
+class Solution(object):
+    def wiggleSort(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        index = 1
+        increasing = 1
+        decreasing = 0
+        while index < len(nums):
+            if increasing:
+                increasing = 0
+                decreasing = 1
+                if nums[index -1] > nums[index]:
+                    nums[index-1], nums[index] = nums[index], nums[index-1]
+                index +=1
+                continue
+            elif decreasing:
+                decreasing = 0
+                increasing = 1
+                if nums[index -1] < nums[index]:
+                    nums[index-1], nums[index] = nums[index], nums[index-1]
+                index +=1
