@@ -1,0 +1,25 @@
+
+for all hi in (lo, hi] satisfy the condition. That's why we have
+
+count += hi-lo;
+
+class Solution(object):
+    def threeSumSmaller(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        nums.sort()
+        res = 0
+        for i in range(len(nums)-2):
+            first = i+1
+            last = len(nums)-1
+            while first < last:
+                if nums[i] + nums[first] + nums[last] < target:
+                    res +=  last - first
+                    first +=1
+                else:
+                    last -=1
+        return res
+            
