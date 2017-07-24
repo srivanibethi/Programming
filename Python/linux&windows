@@ -1,0 +1,11 @@
+import os
+import sys
+# Python 2 example
+dir_name = raw_input("Name of directory to make?:")
+# Run the command based on the OS
+if sys.platform == "Windows":
+    os.system("md " + dir_name)
+elif sys.platform == "Linux":
+    os.system("mkdir " + dir_name)
+else:
+    print "Sorry, we don't currently have support for the " + sys.platform + "OS"
