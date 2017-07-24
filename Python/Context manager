@@ -1,0 +1,36 @@
+constructs that allow you to set something up and tear something down automatically.
+
+with open(path, 'w') as f_obj:
+    f_obj.write(some_data)
+    
+Creating a Context Manager class
+Rather than rewrite Python’s open method here, we’ll create a context manager 
+that can create a SQLite database connection and close it when it’s done
+
+import sqlite3
+class DataConn:
+    """"""
+
+    def __init__(self, db_name):
+        """Constructor"""
+        self.db_name = db_name
+
+    def __enter__(self):
+        """
+        Open the database connection
+        """
+        self.conn = sqlite3.connect(self.db_name)
+        return self.conn
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        """
+        Close the connection
+        """
+        self.conn.close()
+        if exc_val:
+            raise
+
+if __name__ == '__main__':
+    db = 'test.db'
+    with DataConn(db) as conn:
+        cursor = conn.cursor()
