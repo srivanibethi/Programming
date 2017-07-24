@@ -1,0 +1,38 @@
+The super function will return a proxy object that will delegate method calls to a parent or sibling class of type.
+
+The super function has two use cases. The first is in single inheritance where super can be used to refer to the parent 
+class or classes without actually naming them explicitly. This can make your code more maintainable in the future. 
+
+The second use case is in a dynamic execution environment where super supports cooperative multiple inheritance. 
+This is actually a pretty unique use case that may only apply to Python
+
+class MyParentClass():
+    def __init__(self, x, y):
+        pass
+
+class SubClass(MyParentClass):
+    def __init__(self, x, y):
+        super().__init__(x, y)
+        
+Method Resolution Order (MRO)
+
+class X:
+    def __init__(self):
+        print('X')
+        super().__init__()
+
+class Y:
+    def __init__(self):
+        print('Y')
+        super().__init__()
+
+class Z(X, Y):
+    pass
+
+
+z = Z()
+print(Z.__mro__)
+
+X
+Y
+(<class '__main__.Z'>, <class '__main__.X'>, <class '__main__.Y'>, <class 'object'>)
