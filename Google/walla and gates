@@ -1,0 +1,27 @@
+https://leetcode.com/problems/walls-and-gates/#/description
+
+class Solution(object):
+    def wallsAndGates(self, rooms):
+        """
+        :type rooms: List[List[int]]
+        :rtype: void Do not return anything, modify rooms in-place instead.
+        """
+        if not rooms:
+            return
+        rows = len(rooms)
+        cols = len(rooms[0])
+        for row in range(rows):
+            for col in range(cols):
+                if rooms[row][col] == 0:
+                    self.dfs(rooms, row, col, 0)
+                    
+    def dfs(self, rooms, row, col, distance):
+        if row >= len(rooms) or col >= len(rooms[0]) or row <0 or col <0 or rooms[row][col] == -1:
+            return
+        if rooms[row][col] < distance:
+            return
+        rooms[row][col] = distance
+        self.dfs(rooms, row+1, col, distance+1)
+        self.dfs(rooms, row-1, col, distance+1)
+        self.dfs(rooms, row, col+1, distance+1)
+        self.dfs(rooms, row, col-1, distance+1)
