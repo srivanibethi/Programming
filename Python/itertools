@@ -1,0 +1,16 @@
+from itertools import count
+from itertools import islice
+for i in islice(count(10, 2), 5):
+    print(i)
+
+#10
+#12
+#14
+#16
+#18
+
+iterator = repeat(5, 5)
+print (next(iterator))
+#5
+
+from itertools import cycle
