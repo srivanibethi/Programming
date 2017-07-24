@@ -1,3 +1,13 @@
+MAP
+items = [1, 2, 3, 4, 5]
+squared = list(map(lambda x: x**2, items))
+
+REDUCE
+from functools import reduce
+product = reduce((lambda x, y: x * y), [1, 2, 3, 4])
+
+# Output: 24
+
 Filter
 The filter built-in function will take a function and an iterable and return an iterator for those elements 
 within the iterable for which the passed in function returns True.
