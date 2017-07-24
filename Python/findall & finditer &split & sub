@@ -16,3 +16,6 @@ Code
 <callable-iterator object at 0x0266C790>
 >>> map(lambda x: x.group(),re.finditer(r'\w','http://www.hackerrank.com/'))
 ['h', 't', 't', 'p', 'w', 'w', 'w', 'h', 'a', 'c', 'k', 'e', 'r', 'r', 'a', 'n', 'k', 'c', 'o', 'm']
+
+Link:
+http://code.runnable.com/UqV9JYh03AFGAACS/how-to-use-findall-finditer-split-sub-and-subn-in-regular-expressions-in-python-for-regex
