@@ -1,0 +1,23 @@
+A function defined inside another function is called a nested function. Nested functions can access variables of the enclosing scope.
+
+In Python, these non-local variables are read only by default and we must declare them explicitly as non-local 
+(using nonlocal keyword) in order to modify them.
+
+When to use closures?
+So what are closures good for?
+
+Closures can avoid the use of global values and provides some form of data hiding. 
+It can also provide an object oriented solution to the problem.
+
+When there are few methods (one method in most cases) to be implemented in a class, 
+closures can provide an alternate and more elegant solutions. But when the number of attributes and methods get larger, 
+better implement a class.
+
+def counter():
+    num = 0
+    def incrementer():
+        nonlocal num
+        num += 1
+        return num
+    return incrementer
+c = counter()
