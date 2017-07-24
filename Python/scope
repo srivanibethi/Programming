@@ -1,0 +1,5 @@
+Python has three different types of scope:
+
+local scope
+global scope
+nonlocal scope (which was added in Python 3):  The nonlocal keyword adds a scope override to the inner scope.
