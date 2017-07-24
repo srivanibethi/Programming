@@ -4,8 +4,12 @@ import sys
 dir_name = raw_input("Name of directory to make?:")
 # Run the command based on the OS
 if sys.platform == "Windows":
-    os.system("md " + dir_name)
+    obj = Windows()
+    self.__dict__ = obj.__dict__
+    self.__class__ = obj.__class__
 elif sys.platform == "Linux":
-    os.system("mkdir " + dir_name)
+    obj = Linux()
+    self.__dict__ = obj.__dict__
+    self.__class__ = obj.__class__
 else:
     print "Sorry, we don't currently have support for the " + sys.platform + "OS"
