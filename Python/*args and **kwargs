@@ -1,0 +1,27 @@
+Example for usage of *arg:
+# Python program to illustrate 
+# *args 
+def testify(arg1, *argv):
+    print "first argument :", arg1
+    for arg in argv:
+        print "Next argument through *argv :", arg
+ 
+testify('Hello', 'Welcome', 'to', 'GeeksforGeeks')
+Run on IDE
+Output:
+
+first argument : Hello
+Next argument through *argv : Welcome
+Next argument through *argv : to
+Next argument through *argv : GeeksforGeeks
+
+Example for usage of **kwargs:
+def hello(**kwargs):
+    if kwargs is not None:
+        for key, value in kwargs.iteritems():
+            print "%s == %s" %(key, value)
+Run on IDE
+Output:
+
+>>>hello(name="GeeksforGeeks")
+name == GeeksforGeeks
