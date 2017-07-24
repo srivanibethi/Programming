@@ -1,0 +1,90 @@
+
+ChainMap
+defaultdict
+deque
+namedtuple
+OrderedDict
+
+===========================================================================================
+DEFAULTDICT
+============================================================================================
+d = defaultdict(int)
+d[word] += 1
+    
+d = defaultdict(list)
+d[acct_num].append(value)
+
+animal = defaultdict(lambda: "Monkey")
+print (animal['Nick'])
+#Monkey
+========================================================================================
+ORDERED DICT
+========================================================================================
+from collections import OrderedDict
+d = {'banana': 3, 'apple':4, 'pear': 1, 'orange': 2}
+new_d = OrderedDict(sorted(d.items()))
+
+========================================================================================
+DEQUE
+========================================================================================
+
+Deques are thread-safe and support memory efficient appends and pops from either side of the deque. 
+d = deque(maxlen=3)
+
+from collections import deque
+import string
+d = deque(string.ascii_lowercase)
+for letter in d:
+    print(letter)
+    
+d.append('bork')
+print (d)
+#deque(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 
+#       'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'bork'])
+
+d.appendleft('test')
+print (d)
+#deque(['test', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+#       'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'bork'])
+
+d.rotate(1)
+print (d)
+#deque(['bork', 'test', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+#       'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+
+
+========================================================================================
+NAMEDTUPLE
+========================================================================================
+
+ It is like a struct.
+ 
+ from collections import namedtuple
+
+Parts = namedtuple('Parts', 'id_num desc cost amount')
+auto_parts = Parts(id_num='1234', desc='Ford Engine',
+               cost=1200.00, amount=10)
+print(auto_parts.id_num)
+
+========================================================================================
+COUNTER
+========================================================================================
+from collections import Counter
+print (Counter('superfluous'))
+#Counter({'u': 3, 's': 2, 'e': 1, 'l': 1, 'f': 1, 'o': 1, 'r': 1, 'p': 1})
+print (list(counter.elements()))
+#['u', 'u', 'u', 'o', 'p', 'e', 'f', 'l', 'r', 's', 's']
+
+print( counter.most_common(2))
+#[('u', 3), ('s', 2)]
+
+counter_one = Counter('superfluous')
+print (counter_one)
+#Counter({'u': 3, 's': 2, 'l': 1, 'r': 1, 'e': 1, 'o': 1, 'p': 1, 'f': 1})
+
+counter_two = Counter('super')
+print(counter_one.subtract(counter_two))
+#None
+
+print (counter_one)
+#Counter({'u': 2, 'l': 1, 'o': 1, 's': 1, 'f': 1, 'r': 0, 'e': 0, 'p': 0})
