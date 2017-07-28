@@ -1,0 +1,42 @@
+
+https://leetcode.com/problems/pacific-atlantic-water-flow/tabs/description
+If you try to do a DFS or BFS on each grid to see if it can reach both Pacific and Atlantic ocean, you will get a time out error.
+
+Luckily, we can solve this problem if we think in a contrary way.
+We can deduce which grids can reach Atlantic ocean and which can reach Pacific ocean, then the intersection of the two set is the answer.
+
+class Solution(object):
+    def pacificAtlantic(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        if not matrix:
+            return []
+        rows = len(matrix)
+        cols = len(matrix[0])
+        res = []
+        p_visited = [[False for i in range(cols)]for j in range(rows)]
+        a_visited = [[False for i in range(cols)]for j in range(rows)]
+        self.directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+        for i in range(rows):
+            self.dfs(matrix, i, 0, p_visited)
+            self.dfs(matrix, i, cols-1, a_visited)
+        for i in range(cols):
+            self.dfs(matrix, 0, i, p_visited)
+            self.dfs(matrix, rows-1, i, a_visited)
+        for i in range(rows):
+            for j in range(cols):
+                if p_visited[i][j] and a_visited[i][j]:
+                    res.append([i, j])
+        return res
+            
+                
+    def dfs(self, matrix, row, col, visited):
+        visited[row][col] = True
+        for x, y in self.directions:
+            x = x+row
+            y = y+col
+            if x<0 or y<0 or x>=len(matrix) or y>=len(matrix[0]) or visited[x][y] ==True or matrix[x][y] < matrix[row][col]:
+                continue
+            self.dfs(matrix, x, y, visited)
