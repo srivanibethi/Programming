@@ -1,0 +1,65 @@
+
+https://leetcode.com/problems/longest-increasing-path-in-a-matrix/tabs/description
+DFS/DP
+
+class Solution(object):
+    def longestIncreasingPath(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
+        if not matrix:
+            return 0
+        rows = len(matrix)
+        cols = len(matrix[0])
+        max_val = 0
+        dp = [[0 for i in range(cols)] for j in range(rows)]
+        for row in range(rows):
+            for col in range(cols):
+                max_val = max(max_val, self.dfs(matrix, dp, row, col))
+        return max_val
+    
+    def dfs(self, matrix, dp, i, j):
+        M = len(matrix)
+        N = len(matrix[0])
+        if not dp[i][j]:
+            val = matrix[i][j]
+            dp[i][j] = 1 + max(
+                self.dfs(matrix, dp, i - 1, j) if i and val > matrix[i - 1][j] else 0,
+                self.dfs(matrix, dp, i + 1, j) if i < M - 1 and val > matrix[i + 1][j] else 0,
+                self.dfs(matrix, dp, i, j - 1) if j and val > matrix[i][j - 1] else 0,
+                self.dfs(matrix, dp, i, j + 1) if j < N - 1 and val > matrix[i][j + 1] else 0)
+        return dp[i][j]
+
+
+DFS
+
+class Solution(object):
+    def longestIncreasingPath(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
+        if not matrix:
+            return 0
+        rows = len(matrix)
+        cols = len(matrix[0])
+        max_val = float("-inf")
+        self.neighbors = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+        visited = [[False for i in range(cols)] for j in range(rows)]
+        for row in range(rows):
+            for col in range(cols):
+                self.dfs(matrix, row, col, visited, 1)
+        for row in range(rows):
+            for col in range(cols):
+                max_val = max(visited[row][col], max_val)
+        return max_val
+    
+    def dfs(self, matrix, row, col, visited, count):
+        visited[row][col] = max(count, visited[row][col])
+        for i, j in self.neighbors:
+            i, j = row+i, col+j
+            if i < 0 or j <0 or i >= len(matrix) or j >= len(matrix[0]) or matrix[i][j] <= matrix[row][col]:
+                continue
+            self.dfs(matrix, i, j, visited, count+1)
+                
