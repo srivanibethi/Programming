@@ -1,0 +1,28 @@
+https://leetcode.com/problems/flip-game-ii/description/
+
+We can basically try every possible move for the first player (Let's call him 1P from now on), and 
+recursively check if the second player 2P has any chance to win. 
+If 2P is guaranteed to lose, then we know the current move 1P takes must be the winning move.
+Time complexity O(N!)
+
+
+class Solution(object):
+    def canWin(self, st):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        s = list(st)
+        return self.Win(s)
+        
+    def Win(self, s):
+        for c in range(len(s)-1):
+            if s[c] == "+" and s[c+1] == "+":
+                s[c] = "-"
+                s[c+1] = "-"
+                win =  not self.Win(s)
+                s[c] = "+"
+                s[c+1] = "+"
+                if win:
+                    return True 
+        return False
