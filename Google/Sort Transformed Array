@@ -1,0 +1,47 @@
+https://leetcode.com/problems/sort-transformed-array/description/
+
+class Solution(object):
+    def sortTransformedArray(self, nums, a, b, c):
+        """
+        :type nums: List[int]
+        :type a: int
+        :type b: int
+        :type c: int
+        :rtype: List[int]
+        """
+        """
+        We can reduce all the cases to two cases
+        1) when a >0 : both the ends have higher value
+        2) when a <0: middle has high value
+        a   b   change
+        -   +   NO
+        +   +   reverse -ve 
+        +   -   +ve order is same -ve goes to +ve place in the same order
+        -   -   reverse the arr
+        """
+        nums = [x*x*a + x*b + c for x in nums]
+        res = [0]*len(nums)
+        first = 0
+        last = len(nums)-1
+        res_index, increment = (last, -1) if a>0 else (first, 1)
+        while first <=last:
+            if nums[first] > nums[last]:
+                if a > 0:
+                    res[res_index] = nums[first]
+                    res_index += increment
+                    first +=1
+                else:
+                    res[res_index] = nums[last]
+                    res_index += increment
+                    last -=1
+            else:
+                if a>0:
+                    res[res_index] = nums[last]
+                    res_index += increment
+                    last -=1
+                else:
+                    res[res_index] = nums[first]
+                    res_index += increment
+                    first +=1
+        return res
+                
