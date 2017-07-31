@@ -1,0 +1,17 @@
+https://leetcode.com/problems/group-shifted-strings/description/
+
+import collections
+class Solution(object):
+    def groupStrings(self, strings):
+        """
+        :type strings: List[str]
+        :rtype: List[List[str]]
+        """
+        if not strings:
+            return strings
+        if len(strings) <2:
+            return [strings]
+        res = collections.defaultdict(list)
+        for s in strings:
+            res[tuple((ord(c) - ord(s[0])) % 26 for c in s)] +=s,
+        return map(sorted, res.values())
