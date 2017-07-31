@@ -1,0 +1,15 @@
+https://leetcode.com/problems/h-index/description/
+# H index should have atleast H elements
+class Solution(object):
+    def hIndex(self, citations):
+        """
+        :type citations: List[int]
+        :rtype: int
+        """
+        citations.sort()
+        n = len(citations)
+        for i in xrange(n):
+            print citations[i], (n-i)
+            if citations[i] >= (n-i):
+                return n-i
+        return 0
