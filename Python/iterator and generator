@@ -1,0 +1,3 @@
+iterator: Any object which has next(__next__ in python 3) and __iter__ methods is called iterator
+
+generator:A generator is built by one or more yield expressions. Every generator is an iterator but not vice versa
